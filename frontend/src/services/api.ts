@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://localhost:5001/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -61,7 +61,7 @@ export const candidateService = {
 export const verificationService = {
   start: async (id: string) => {
     // Note: Mount endpoint directly to backend port root
-    const response = await axios.post(`http://localhost:5000/api/verifications/${id}/start`, {}, {
+    const response = await axios.post(`http://localhost:5001/api/verifications/${id}/start`, {}, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('vshield_token')}`,
       }
@@ -79,7 +79,7 @@ export const reportService = {
   },
   getDownloadUrl: (id: string) => {
     const token = localStorage.getItem('vshield_token');
-    return `http://localhost:5000/api/reports/${id}?token=${token}`;
+    return `http://localhost:5001/api/reports/${id}?token=${token}`;
   },
 };
 
