@@ -1,0 +1,48 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "passwordHash" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "Candidate" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "fullName" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "aadhaarNumber" TEXT NOT NULL,
+    "panNumber" TEXT NOT NULL,
+    "dob" DATETIME NOT NULL,
+    "address" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'PENDING',
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT NOT NULL,
+    CONSTRAINT "Candidate_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "VerificationLog" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "candidateId" TEXT NOT NULL,
+    "verificationType" TEXT NOT NULL,
+    "requestPayload" TEXT NOT NULL,
+    "responsePayload" TEXT NOT NULL,
+    "verificationStatus" TEXT NOT NULL,
+    "verifiedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "VerificationLog_candidateId_fkey" FOREIGN KEY ("candidateId") REFERENCES "Candidate" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE INDEX "Candidate_createdById_idx" ON "Candidate"("createdById");
+
+-- CreateIndex
+CREATE INDEX "Candidate_status_idx" ON "Candidate"("status");
+
+-- CreateIndex
+CREATE INDEX "VerificationLog_candidateId_idx" ON "VerificationLog"("candidateId");

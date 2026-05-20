@@ -1,0 +1,49 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String      @id @default(uuid())
+  name         String
+  email        String      @unique
+  passwordHash String
+  createdAt    DateTime    @default(now())
+  candidates   Candidate[]
+}
+
+model Candidate {
+  id               String            @id @default(uuid())
+  fullName         String
+  email            String
+  phone            String
+  aadhaarNumber    String
+  panNumber        String
+  dob              DateTime
+  address          String
+  status           String            @default("PENDING") // PENDING, VERIFIED, FAILED, PARTIAL
+  createdAt        DateTime          @default(now())
+  createdById      String
+  createdBy        User              @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  verificationLogs VerificationLog[]
+
+  @@index([createdById])
+  @@index([status])
+}
+
+model VerificationLog {
+  id                 String    @id @default(uuid())
+  candidateId        String
+  verificationType   String    // AADHAAR, PAN
+  requestPayload     String    // Serialized JSON
+  responsePayload    String    // Serialized JSON
+  verificationStatus String    // SUCCESS, FAILED
+  verifiedAt         DateTime  @default(now())
+  candidate          Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  @@index([candidateId])
+}
