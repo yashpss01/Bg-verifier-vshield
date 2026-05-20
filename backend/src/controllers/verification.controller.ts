@@ -121,12 +121,23 @@ export const startVerification = async (req: AuthRequest, res: Response, next: N
       };
     }
 
+    // Masking utilities for security and privacy audits
+    const maskAadhaar = (num: string) => {
+      if (!num || num.length !== 12) return num;
+      return `XXXX-XXXX-${num.slice(-4)}`;
+    };
+
+    const maskPAN = (num: string) => {
+      if (!num || num.length !== 10) return num;
+      return `XXXXX${num.slice(5, 9)}${num.slice(-1)}`; // e.g. XXXXX1234F
+    };
+
     // 3. Save Aadhaar Verification Log in DB
     await prisma.verificationLog.create({
       data: {
         candidateId: candidate.id,
         verificationType: 'AADHAAR',
-        requestPayload: JSON.stringify({ aadhaarNumber: candidate.aadhaarNumber }),
+        requestPayload: JSON.stringify({ aadhaarNumber: maskAadhaar(candidate.aadhaarNumber) }),
         responsePayload: JSON.stringify(aadhaarResult),
         verificationStatus: aadhaarResult.status === 'verified' ? 'SUCCESS' : 'FAILED',
       },
@@ -137,7 +148,7 @@ export const startVerification = async (req: AuthRequest, res: Response, next: N
       data: {
         candidateId: candidate.id,
         verificationType: 'PAN',
-        requestPayload: JSON.stringify({ panNumber: candidate.panNumber }),
+        requestPayload: JSON.stringify({ panNumber: maskPAN(candidate.panNumber) }),
         responsePayload: JSON.stringify(panResult),
         verificationStatus: panResult.status === 'verified' ? 'SUCCESS' : 'FAILED',
       },
