@@ -37,8 +37,7 @@ const ReportView: React.FC = () => {
   const handlePrintRedirect = () => {
     if (!id) return;
     // Open the backend print endpoint in a new tab
-    const token = localStorage.getItem('vshield_token');
-    window.open(`http://localhost:5000/api/reports/${id}?token=${token}`, '_blank');
+    window.open(reportService.getDownloadUrl(id), '_blank');
   };
 
   if (isLoading) {
