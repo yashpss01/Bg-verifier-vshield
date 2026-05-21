@@ -3,12 +3,62 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+@theme {
+  --color-slate-950: #070d0b; /* Deep Spruce Black */
+  --color-slate-900: #0c1512; /* Rich dark pine forest background */
+  --color-slate-800: #13221c; /* Premium spruce card background */
+  --color-slate-700: #1c332b; /* Spruce border/outline */
+  --color-slate-600: #2c4a3f;
+  --color-slate-500: #426b5c; /* Subdued text/labels */
+  --color-slate-400: #6c9485; /* Body text contrast */
+  --color-slate-300: #a0c0b3;
+  --color-slate-200: #cfe2da;
+  --color-slate-100: #f0f6f3; /* Pure natural crisp white */
+
+  --color-indigo-950: #041c14;
+  --color-indigo-900: #082e21;
+  --color-indigo-800: #0e4533;
+  --color-indigo-700: #135c44;
+  --color-indigo-650: #187355;
+  --color-indigo-600: #1c8b67;
+  --color-indigo-550: #21a279;
+  --color-indigo-500: #26c695; /* Radiant organic Mint Jade */
+  --color-indigo-450: #4ad2aa;
+  --color-indigo-400: #6eddbe;
+  --color-indigo-300: #9df3d8;
+  --color-indigo-200: #ccfaf0;
+  --color-indigo-100: #f0fffd;
+
+  --color-emerald-950: #271704;
+  --color-emerald-900: #3f2406;
+  --color-emerald-800: #5d3408;
+  --color-emerald-700: #824709;
+  --color-emerald-600: #aa5c0c;
+  --color-emerald-500: #d97706; /* Radiant Honey Gold / Amber */
+  --color-emerald-400: #f59e0b;
+  --color-emerald-300: #fbbf24;
+  --color-emerald-200: #fde68a;
+  --color-emerald-100: #fef3c7;
+
+  --color-rose-950: #2d0b0b;
+  --color-rose-900: #4c1111;
+  --color-rose-800: #721c1c;
+  --color-rose-700: #992727;
+  --color-rose-600: #c13838;
+  --color-rose-500: #e8503e; /* Vibrant coral clay / warm terracotta */
+  --color-rose-450: #ec6a5b;
+  --color-rose-400: #f08577;
+  --color-rose-300: #f5b2a9;
+  --color-rose-200: #fbd7d2;
+  --color-rose-100: #fff0ee;
+}
+
 @layer base {
   body {
     @apply bg-slate-900 text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-indigo-500 selection:text-white;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(38, 198, 149, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.05) 0px, transparent 50%);
     min-height: 100vh;
   }
 }
@@ -63,11 +113,11 @@
 
 /* Custom text gradient */
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400 font-extrabold;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-indigo-300 to-emerald-400 font-extrabold;
 }
 
 .text-gradient-emerald {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400 font-bold;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-emerald-400 font-bold;
 }
 
 /* Shimmer animations */
@@ -99,3 +149,20 @@
   animation: shimmer 2s infinite;
   content: '';
 }
+
+/* Elegant Page Transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+

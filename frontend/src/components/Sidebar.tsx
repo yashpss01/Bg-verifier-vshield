@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Shield, LayoutDashboard, Users, LogOut } from 'lucide-react';
+import { Shield, LayoutDashboard, Users, LogOut, X } from 'lucide-react';
 
 interface SidebarProps {
   user: {
@@ -8,34 +8,50 @@ interface SidebarProps {
     email: string;
   } | null;
   onLogout: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
+const Sidebar: React.FC<SidebarProps> = ({ user, onLogout, isOpen, onClose }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    onClose();
     onLogout();
     navigate('/login');
   };
 
   return (
-    <aside className="w-64 h-screen fixed left-0 top-0 glass-panel border-r border-slate-700/50 flex flex-col justify-between p-6 z-20">
+    <aside className={`w-64 h-screen fixed left-0 top-0 glass-panel border-r border-slate-700/50 flex flex-col justify-between p-6 z-30 transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+      isOpen ? 'translate-x-0' : '-translate-x-full'
+    }`}>
       <div className="flex flex-col gap-8">
-        {/* Brand Header */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <Shield className="w-5 h-5 text-white" />
+        {/* Brand Header & Mobile Close */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+              <Shield className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h1 className="font-bold text-lg leading-tight tracking-tight text-white">VShield</h1>
+              <span className="text-[10px] text-emerald-400 font-semibold tracking-widest uppercase">Verifier</span>
+            </div>
           </div>
-          <div>
-            <h1 className="font-bold text-lg leading-tight tracking-tight text-white">VShield</h1>
-            <span className="text-[10px] text-emerald-400 font-semibold tracking-widest uppercase">Verifier</span>
-          </div>
+
+          {/* Close Menu Button on Mobile */}
+          <button
+            onClick={onClose}
+            className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors lg:hidden"
+          >
+            <X className="w-5.5 h-5.5" />
+          </button>
         </div>
 
         {/* Navigation Items */}
         <nav className="flex flex-col gap-1.5">
           <NavLink
             to="/"
+            onClick={onClose}
             className={({ isActive }) =>
               `flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                 isActive
@@ -50,6 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
           
           <NavLink
             to="/candidates"
+            onClick={onClose}
             className={({ isActive }) =>
               `flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                 isActive
@@ -91,3 +108,4 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
 };
 
 export default Sidebar;
+

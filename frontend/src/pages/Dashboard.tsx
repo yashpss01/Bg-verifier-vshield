@@ -106,7 +106,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex-1 p-8 flex flex-col gap-8 max-w-7xl mx-auto">
+    <div className="flex-1 p-8 flex flex-col gap-8 max-w-7xl mx-auto animate-fade-in-up">
       {/* Welcome Banner */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
@@ -127,7 +127,7 @@ const Dashboard: React.FC = () => {
         {statCards.map((card, index) => {
           const Icon = card.icon;
           return (
-            <div key={index} className="glass-panel p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden group hover:border-slate-600/50 transition-all duration-300">
+            <div key={index} className="glass-panel p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden group hover:border-indigo-500/30 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300">
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-700/10 to-transparent rounded-full group-hover:scale-110 transition-transform duration-500"></div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-slate-400 tracking-wide">{card.title}</span>

@@ -44,6 +44,8 @@ const CandidateList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [modalLoading, setModalLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [deleteCandidateId, setDeleteCandidateId] = useState<string | null>(null);
+  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -90,9 +92,12 @@ const CandidateList: React.FC = () => {
     try {
       if (editingCandidate) {
         await candidateService.update(editingCandidate.id, data);
+        setNotification({ message: 'Candidate profile updated successfully.', type: 'success' });
       } else {
         await candidateService.create(data);
+        setNotification({ message: 'New candidate profile registered successfully.', type: 'success' });
       }
+      setTimeout(() => setNotification(null), 5000);
       setIsModalOpen(false);
       reset();
       setEditingCandidate(null);
@@ -104,15 +109,17 @@ const CandidateList: React.FC = () => {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm('Are you absolutely sure you want to delete this candidate? This will delete all associated verification logs permanently.')) {
-      return;
-    }
+  const confirmDelete = async (id: string) => {
     try {
       await candidateService.delete(id);
+      setDeleteCandidateId(null);
+      setNotification({ message: 'Candidate profile and all associated logs successfully deleted.', type: 'success' });
+      setTimeout(() => setNotification(null), 5000);
       fetchCandidates();
     } catch (err) {
-      alert('Failed to delete candidate.');
+      setDeleteCandidateId(null);
+      setNotification({ message: 'Failed to delete candidate profile.', type: 'error' });
+      setTimeout(() => setNotification(null), 5000);
     }
   };
 
@@ -143,7 +150,7 @@ const CandidateList: React.FC = () => {
   const totalPages = Math.ceil(candidates.length / itemsPerPage);
 
   return (
-    <div className="flex-1 p-8 flex flex-col gap-6 max-w-7xl mx-auto">
+    <div className="flex-1 p-8 flex flex-col gap-6 max-w-7xl mx-auto animate-fade-in-up">
       {/* Title Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
@@ -158,6 +165,26 @@ const CandidateList: React.FC = () => {
           Add Candidate
         </button>
       </div>
+
+      {/* Modern Glass Alert Toast */}
+      {notification && (
+        <div className={`p-4 rounded-xl border flex items-center justify-between gap-3 ${
+          notification.type === 'success' 
+            ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' 
+            : 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+        }`}>
+          <div className="flex items-center gap-2">
+            <span className={`w-2.5 h-2.5 rounded-full ${notification.type === 'success' ? 'bg-emerald-400' : 'bg-rose-400'}`}></span>
+            <p className="text-xs font-semibold">{notification.message}</p>
+          </div>
+          <button 
+            onClick={() => setNotification(null)}
+            className="text-xs font-bold opacity-60 hover:opacity-100 transition-opacity"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Query Filters Grid */}
       <div className="flex flex-wrap items-center justify-between gap-4 glass-panel p-4 rounded-xl">
@@ -291,7 +318,7 @@ const CandidateList: React.FC = () => {
                             <Edit3 className="w-4 h-4" />
                           </button>
                           <button
-                            onClick={() => handleDelete(cand.id)}
+                            onClick={() => setDeleteCandidateId(cand.id)}
                             title="Remove profile"
                             className="p-2 rounded-lg bg-slate-900/60 border border-slate-800 hover:bg-red-500/10 hover:border-red-500/20 text-slate-500 hover:text-red-400 transition-all duration-150"
                           >
@@ -475,6 +502,36 @@ const CandidateList: React.FC = () => {
                 )}
               </button>
             </form>
+          </div>
+        </div>
+      )}
+      {/* Custom Deletion Confirmation Modal Dialog */}
+      {deleteCandidateId && (
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="w-full max-w-sm glass-panel rounded-2xl p-6 text-center flex flex-col items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+              <Trash2 className="w-5 h-5 text-rose-400" />
+            </div>
+            <div>
+              <h4 className="font-extrabold text-sm text-white uppercase tracking-wider">Delete Candidate?</h4>
+              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                Are you absolutely sure? This will delete all associated verification logs permanently. This action cannot be undone.
+              </p>
+            </div>
+            <div className="flex items-center gap-3 w-full mt-2">
+              <button
+                onClick={() => setDeleteCandidateId(null)}
+                className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs rounded-xl border border-slate-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => confirmDelete(deleteCandidateId)}
+                className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs rounded-xl transition-all duration-200"
+              >
+                Delete Profile
+              </button>
+            </div>
           </div>
         </div>
       )}
