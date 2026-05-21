@@ -11,6 +11,11 @@ Built with a modern web design philosophy, VShield features a custom-engineered 
 - **Frontend Client (Vercel)**: [https://bg-verifier-vshield.vercel.app](https://bg-verifier-vshield.vercel.app)
 - **Backend Service (Render)**: [https://bg-verifier-vshield.onrender.com](https://bg-verifier-vshield.onrender.com)
 
+### 🔑 Test Recruiter Credentials
+To review the live dashboard without registering a new account, you can use these test credentials:
+- **Email**: `testuser@testuser.com`
+- **Password**: `testuser`
+
 ---
 
 ## 🚀 Key Features
