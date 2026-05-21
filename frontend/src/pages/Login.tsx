@@ -100,7 +100,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <Shield className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className="text-2xl font-extrabold tracking-tight text-white font-sans">
+            <h2 className="text-2xl font-extrabold tracking-tight text-slate-100 font-sans">
               {isLogin ? 'Welcome Back' : 'Create Account'}
             </h2>
             <p className="text-slate-400 text-sm mt-1">
@@ -128,7 +128,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 pointer-events-none">
+                  <Mail className="w-4 h-4 text-slate-500" />
+                </div>
                 <input
                   id="email"
                   type="email"
@@ -145,7 +147,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <div className="flex flex-col gap-2">
               <label htmlFor="password" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Password</label>
               <div className="relative">
-                <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 pointer-events-none">
+                  <Key className="w-4 h-4 text-slate-500" />
+                </div>
                 <input
                   id="password"
                   type="password"
@@ -191,7 +195,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Full Name</label>
               <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 pointer-events-none">
+                  <User className="w-4 h-4 text-slate-500" />
+                </div>
                 <input
                   id="name"
                   type="text"
@@ -208,7 +214,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <div className="flex flex-col gap-2">
               <label htmlFor="reg-email" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 pointer-events-none">
+                  <Mail className="w-4 h-4 text-slate-500" />
+                </div>
                 <input
                   id="reg-email"
                   type="email"
@@ -225,7 +233,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <div className="flex flex-col gap-2">
               <label htmlFor="reg-password" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Password</label>
               <div className="relative">
-                <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 pointer-events-none">
+                  <Key className="w-4 h-4 text-slate-500" />
+                </div>
                 <input
                   id="reg-password"
                   type="password"

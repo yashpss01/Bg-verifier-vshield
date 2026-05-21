@@ -15,19 +15,19 @@
   --color-slate-200: #22221c; /* Elegant deep-charcoal headings */
   --color-slate-100: #0c0c09; /* Cleanest deepest charcoal text */
 
-  --color-indigo-950: #f4fdfa; /* Soft mint background tint */
-  --color-indigo-900: #e6fcf5;
-  --color-indigo-800: #c3fae8;
-  --color-indigo-700: #099268; /* Rich mint for hover states */
-  --color-indigo-650: #0a9b6f;
-  --color-indigo-600: #0ca678; /* Primary actions hover */
-  --color-indigo-550: #0eaf7f;
-  --color-indigo-500: #0ca678; /* Radiant Forest Jade Mint */
-  --color-indigo-450: #0b8a63;
-  --color-indigo-400: #0b8a63; /* Highly contrast-safe rich mint text */
-  --color-indigo-300: #086f4f; /* Deep spruce text */
-  --color-indigo-200: #06563d;
-  --color-indigo-100: #043e2b;
+  --color-indigo-950: #f3f6fc; /* Soft twilight background tint */
+  --color-indigo-900: #e8edfb;
+  --color-indigo-800: #ccd7f7;
+  --color-indigo-700: #4e6ed8; /* Rich mineral twilight for hover states */
+  --color-indigo-650: #3f5fcb;
+  --color-indigo-600: #3451bb; /* Primary actions hover */
+  --color-indigo-550: #2d47aa;
+  --color-indigo-500: #3b56cd; /* Radiant Mineral Twilight Indigo */
+  --color-indigo-450: #2c42ab;
+  --color-indigo-400: #253995; /* Highly contrast-safe rich dark twilight text */
+  --color-indigo-300: #1c2b74; /* Deep twilight stone text */
+  --color-indigo-200: #121e54;
+  --color-indigo-100: #090f2b;
 
   --color-emerald-950: #fffbeb; /* Soft amber background tint */
   --color-emerald-900: #fff9db;
@@ -56,7 +56,7 @@
   body {
     @apply bg-slate-900 text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-indigo-500 selection:text-white;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(12, 166, 120, 0.04) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(59, 86, 205, 0.04) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.03) 0px, transparent 50%);
     min-height: 100vh;
   }

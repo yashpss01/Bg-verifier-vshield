@@ -190,7 +190,9 @@ const CandidateList: React.FC = () => {
       <div className="flex flex-wrap items-center justify-between gap-4 glass-panel p-4 rounded-xl">
         <form onSubmit={handleSearchSubmit} className="flex items-center gap-2 w-full md:w-96">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 pointer-events-none">
+              <Search className="w-4 h-4 text-slate-500" />
+            </div>
             <input
               type="text"
               placeholder="Search by name, email, phone..."
