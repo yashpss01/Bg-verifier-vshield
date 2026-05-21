@@ -133,7 +133,7 @@ const CandidateDetails: React.FC = () => {
             {candidate.fullName.slice(0, 2).toUpperCase()}
           </div>
           <div>
-            <h2 className="text-2xl font-black text-white">{candidate.fullName}</h2>
+            <h2 className="text-2xl font-black text-slate-100">{candidate.fullName}</h2>
             <div className="flex items-center gap-2 mt-1.5 flex-wrap">
               <span className={`inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider border ${
                 candidate.status === 'VERIFIED' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' :
@@ -173,7 +173,7 @@ const CandidateDetails: React.FC = () => {
           <button
             onClick={() => navigate(`/reports/${candidate.id}`)}
             disabled={candidate.status === 'PENDING'}
-            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-xs px-4.5 py-3 rounded-xl transition-all duration-200 shadow-md disabled:opacity-30 disabled:pointer-events-none active:scale-[0.98]"
+            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-100 hover:text-slate-200 font-semibold text-xs px-4.5 py-3 rounded-xl transition-all duration-200 shadow-md disabled:opacity-30 disabled:pointer-events-none active:scale-[0.98]"
           >
             <FileSpreadsheet className="w-4 h-4" />
             Generate Report

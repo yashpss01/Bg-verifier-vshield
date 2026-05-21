@@ -103,7 +103,7 @@ const ReportView: React.FC = () => {
               <Award className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-black text-white tracking-tight leading-none">VShield Verification</h2>
+              <h2 className="text-xl font-black text-slate-100 tracking-tight leading-none">VShield Verification</h2>
               <span className="text-[9px] text-emerald-400 font-bold tracking-widest uppercase mt-1 block">Credential Integrity Audit</span>
             </div>
           </div>

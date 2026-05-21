@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
       {/* Welcome Banner */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-white">Recruitment Workspace</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-100">Recruitment Workspace</h2>
           <p className="text-slate-400 text-sm mt-1">Manage and orchestrate automated candidate background verification checks.</p>
         </div>
         <button
@@ -136,7 +136,7 @@ const Dashboard: React.FC = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-3xl font-black text-white">{card.value}</h3>
+                <h3 className="text-3xl font-black text-slate-100">{card.value}</h3>
                 <p className="text-[11px] text-slate-500 font-medium mt-1 leading-normal">{card.description}</p>
               </div>
             </div>
@@ -150,7 +150,7 @@ const Dashboard: React.FC = () => {
         <div className="lg:col-span-2 glass-panel rounded-2xl p-6 flex flex-col gap-5">
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <h3 className="font-extrabold text-lg text-white">Recent Audits</h3>
+              <h3 className="font-extrabold text-lg text-slate-100">Recent Audits</h3>
               <p className="text-xs text-slate-500 mt-0.5">Direct overview of last created profiles</p>
             </div>
             <button 
@@ -185,7 +185,7 @@ const Dashboard: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/40">
                   {recentCandidates.map((cand) => (
-                    <tr key={cand.id} className="group hover:bg-slate-800/10 transition-colors">
+                    <tr key={cand.id} className="group hover:bg-slate-700/20 transition-colors">
                       <td className="py-4 pr-3">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center font-bold text-xs text-slate-300">
@@ -216,7 +216,7 @@ const Dashboard: React.FC = () => {
                       <td className="py-4 text-right">
                         <button
                           onClick={() => navigate(`/candidates/${cand.id}`)}
-                          className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+                          className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-100 transition-colors"
                         >
                           <ArrowRight className="w-4 h-4" />
                         </button>
@@ -232,7 +232,7 @@ const Dashboard: React.FC = () => {
         {/* Dynamic Verifications Distribution Pie Chart */}
         <div className="glass-panel rounded-2xl p-6 flex flex-col gap-6">
           <div>
-            <h3 className="font-extrabold text-lg text-white">Status Breakdown</h3>
+            <h3 className="font-extrabold text-lg text-slate-100">Status Breakdown</h3>
             <p className="text-xs text-slate-500 mt-0.5">Verification status allocation ratio</p>
           </div>
 
@@ -247,7 +247,7 @@ const Dashboard: React.FC = () => {
                 <div className="relative w-40 h-40 flex items-center justify-center">
                   <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                     {/* Background Circle */}
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="#1e293b" strokeWidth="2.8" />
+                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="#eaeae2" strokeWidth="2.8" />
                     
                     {/* Verified Ring */}
                     <circle 
@@ -262,7 +262,7 @@ const Dashboard: React.FC = () => {
                       strokeDasharray={`${(stats.pending / stats.total) * 100} ${100 - (stats.pending / stats.total) * 100}`}
                       strokeDashoffset={`${-((stats.verified / stats.total) * 100)}`}
                     />
-
+ 
                     {/* Failed Ring */}
                     <circle 
                       cx="18" cy="18" r="15.915" fill="none" stroke="#ef4444" strokeWidth="3" 
@@ -272,7 +272,7 @@ const Dashboard: React.FC = () => {
                   </svg>
                   <div className="absolute flex flex-col items-center">
                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Success</span>
-                    <span className="text-xl font-extrabold text-white">
+                    <span className="text-xl font-extrabold text-slate-100">
                       {stats.total > 0 ? Math.round((stats.verified / stats.total) * 100) : 0}%
                     </span>
                   </div>

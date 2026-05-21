@@ -154,7 +154,7 @@ const CandidateList: React.FC = () => {
       {/* Title Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-white">Candidates Directory</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-100">Candidates Directory</h2>
           <p className="text-slate-400 text-sm mt-1">Submit, edit, and initiate verification audits for recruiter databases.</p>
         </div>
         <button
@@ -203,7 +203,7 @@ const CandidateList: React.FC = () => {
           </div>
           <button 
             type="submit"
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white font-semibold text-xs rounded-lg transition-colors"
+            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-slate-100 font-semibold text-xs rounded-lg transition-colors"
           >
             Search
           </button>
@@ -308,7 +308,7 @@ const CandidateList: React.FC = () => {
                           <button
                             onClick={() => navigate(`/candidates/${cand.id}`)}
                             title="View candidate dashboard"
-                            className="p-2 rounded-lg bg-slate-900/60 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-white transition-all duration-150"
+                            className="p-2 rounded-lg bg-slate-900/60 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-100 transition-all duration-150"
                           >
                             <Eye className="w-4 h-4" />
                           </button>
@@ -344,14 +344,14 @@ const CandidateList: React.FC = () => {
                   <button
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="p-2 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:bg-slate-900/60 disabled:hover:text-slate-400 transition-colors"
+                    className="p-2 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-slate-100 disabled:opacity-30 disabled:hover:bg-slate-900/60 disabled:hover:text-slate-400 transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="p-2 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:bg-slate-900/60 disabled:hover:text-slate-400 transition-colors"
+                    className="p-2 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-slate-100 disabled:opacity-30 disabled:hover:bg-slate-900/60 disabled:hover:text-slate-400 transition-colors"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -368,12 +368,12 @@ const CandidateList: React.FC = () => {
           <div className="w-full max-w-lg glass-panel rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute right-6 top-6 p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+              className="absolute right-6 top-6 p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-slate-100 transition-colors"
             >
               <X className="w-4.5 h-4.5" />
             </button>
 
-            <h3 className="text-xl font-extrabold text-white font-sans mb-1">
+            <h3 className="text-xl font-extrabold text-slate-100 font-sans mb-1">
               {editingCandidate ? 'Edit Candidate Details' : 'Add Candidate Profile'}
             </h3>
             <p className="text-slate-400 text-xs mb-6">
@@ -515,7 +515,7 @@ const CandidateList: React.FC = () => {
               <Trash2 className="w-5 h-5 text-rose-400" />
             </div>
             <div>
-              <h4 className="font-extrabold text-sm text-white uppercase tracking-wider">Delete Candidate?</h4>
+              <h4 className="font-extrabold text-sm text-slate-100 uppercase tracking-wider">Delete Candidate?</h4>
               <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
                 Are you absolutely sure? This will delete all associated verification logs permanently. This action cannot be undone.
               </p>
@@ -523,7 +523,7 @@ const CandidateList: React.FC = () => {
             <div className="flex items-center gap-3 w-full mt-2">
               <button
                 onClick={() => setDeleteCandidateId(null)}
-                className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs rounded-xl border border-slate-700 transition-colors"
+                className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs rounded-xl border border-slate-700 transition-colors"
               >
                 Cancel
               </button>
