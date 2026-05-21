@@ -29,16 +29,16 @@
   --color-indigo-200: #121e54;
   --color-indigo-100: #090f2b;
 
-  --color-emerald-950: #fffbeb; /* Soft amber background tint */
-  --color-emerald-900: #fff9db;
-  --color-emerald-800: #fef08a;
-  --color-emerald-700: #b45309; /* Rich bronze success text */
-  --color-emerald-600: #d97706; /* Primary warm success */
-  --color-emerald-500: #d97706; /* Radiant Honey Gold / Amber */
-  --color-emerald-400: #b45309; /* Contrast-safe success text */
-  --color-emerald-300: #92400e;
-  --color-emerald-200: #78350f;
-  --color-emerald-100: #451a03;
+  --color-emerald-950: #f0fdf4; /* Ultra-soft sage green background tint */
+  --color-emerald-900: #dcfce7;
+  --color-emerald-800: #bbf7d0;
+  --color-emerald-700: #15803d; /* Rich forest green success text */
+  --color-emerald-600: #16a34a; /* Primary emerald success */
+  --color-emerald-500: #10b981; /* Radiant Emerald success bullet */
+  --color-emerald-400: #047857; /* Highly contrast-safe deep mint green text for white backdrops */
+  --color-emerald-300: #065f46;
+  --color-emerald-200: #064e3b;
+  --color-emerald-100: #022c22;
 
   --color-rose-950: #fff5f5; /* Soft rose background tint */
   --color-rose-900: #ffe3e3;
