@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
   Printer, 
+  Download,
   ShieldCheck, 
   ShieldAlert, 
   BookmarkCheck,
@@ -40,6 +41,11 @@ const ReportView: React.FC = () => {
     window.open(reportService.getDownloadUrl(id), '_blank');
   };
 
+  const handleDownloadPDF = () => {
+    if (!id) return;
+    window.open(`${reportService.getDownloadUrl(id)}&format=pdf`, '_blank');
+  };
+
   if (isLoading) {
     return (
       <div className="flex-1 p-8 flex flex-col gap-6 animate-pulse max-w-3xl mx-auto mt-4">
@@ -67,13 +73,23 @@ const ReportView: React.FC = () => {
           Back to Details
         </button>
 
-        <button
-          onClick={handlePrintRedirect}
-          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-600/10 active:scale-[0.98]"
-        >
-          <Printer className="w-4 h-4" />
-          Print / Save PDF
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleDownloadPDF}
+            className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition-all duration-200 shadow-md shadow-emerald-600/10 active:scale-[0.98]"
+          >
+            <Download className="w-4 h-4" />
+            Download PDF
+          </button>
+
+          <button
+            onClick={handlePrintRedirect}
+            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-600/10 active:scale-[0.98]"
+          >
+            <Printer className="w-4 h-4" />
+            Print / Save PDF
+          </button>
+        </div>
       </div>
 
       {/* High-Fidelity Professional Sheet */}

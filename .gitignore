@@ -20,6 +20,9 @@ node_modules/
 .env.production.local
 backend/.env
 
+# Build Outputs
+backend/dist/
+
 # Databases
 *.db
 *.db-journal

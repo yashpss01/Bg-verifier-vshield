@@ -1,6 +1,151 @@
 import { Response, NextFunction } from 'express';
 import { AuthRequest } from '../middleware/auth';
 import prisma from '../config/db';
+import PDFDocument from 'pdfkit';
+
+const generatePDFReport = (reportData: any, res: Response) => {
+  const doc = new PDFDocument({ size: 'A4', margin: 50 });
+
+  // Stream the PDF directly to the Express response
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename=BGV_Report_${reportData.candidateName.replace(/\s+/g, '_')}.pdf`);
+
+  doc.pipe(res);
+
+  // Styling Constants
+  const primaryColor = '#4f46e5'; // Indigo
+  const textColor = '#1f2937'; // Dark Gray
+  const lightGray = '#9ca3af';
+  const borderLight = '#e5e7eb';
+
+  // 1. Header (VShield Logo & Title)
+  doc.fontSize(24).fillColor(primaryColor).text('VShield', 50, 50);
+  doc.fontSize(8).fillColor(lightGray).text('BACKGROUND VERIFICATION PLATFORM', 50, 75);
+
+  doc.fontSize(14).fillColor(textColor).text('VERIFICATION REPORT', 320, 50, { align: 'right' });
+  doc.fontSize(9).fillColor(lightGray).text(`GENERATED ON: ${reportData.generatedOn}`, 320, 68, { align: 'right' });
+
+  // Horizontal Rule
+  doc.moveTo(50, 95).lineTo(545, 95).strokeColor(primaryColor).lineWidth(2).stroke();
+
+  // 2. Candidate Information Title
+  doc.fontSize(11).fillColor(primaryColor).text('CANDIDATE INFORMATION', 50, 115);
+  doc.moveTo(50, 127).lineTo(545, 127).strokeColor(borderLight).lineWidth(1).stroke();
+
+  // Grid Layout for Candidate Details
+  const gridYStart = 140;
+  const col1X = 50;
+  const col2X = 300;
+
+  // Row 1
+  doc.fontSize(8).fillColor(lightGray).text('FULL NAME', col1X, gridYStart);
+  doc.fontSize(10).fillColor(textColor).text(reportData.candidateName, col1X, gridYStart + 11);
+
+  doc.fontSize(8).fillColor(lightGray).text('EMAIL ADDRESS', col2X, gridYStart);
+  doc.fontSize(10).fillColor(textColor).text(reportData.email, col2X, gridYStart + 11);
+
+  // Row 2
+  const gridY2 = gridYStart + 35;
+  doc.fontSize(8).fillColor(lightGray).text('PHONE NUMBER', col1X, gridY2);
+  doc.fontSize(10).fillColor(textColor).text(reportData.phone, col1X, gridY2 + 11);
+
+  doc.fontSize(8).fillColor(lightGray).text('DATE OF BIRTH', col2X, gridY2);
+  doc.fontSize(10).fillColor(textColor).text(reportData.dob, col2X, gridY2 + 11);
+
+  // Row 3 (Address)
+  const gridY3 = gridY2 + 35;
+  doc.fontSize(8).fillColor(lightGray).text('RESIDENTIAL ADDRESS', col1X, gridY3);
+  doc.fontSize(10).fillColor(textColor).text(reportData.address, col1X, gridY3 + 11, { width: 495 });
+
+  // 3. Verification Outcomes
+  const verificationYStart = gridY3 + 55;
+  doc.fontSize(11).fillColor(primaryColor).text('VERIFICATION OUTCOMES', 50, verificationYStart);
+  doc.moveTo(50, verificationYStart + 15).lineTo(545, verificationYStart + 15).strokeColor(borderLight).lineWidth(1).stroke();
+
+  // Verification Details List
+  const listYStart = verificationYStart + 30;
+
+  // Aadhaar Block
+  doc.fontSize(10).fillColor(textColor).text('Aadhaar Identity Verification', 50, listYStart);
+  doc.fontSize(8).fillColor(lightGray).text(`Document Ref: ${reportData.maskedAadhaar}`, 50, listYStart + 11);
+  
+  // Status Badge for Aadhaar
+  const isAadhaarVerified = reportData.aadhaarVerification === 'SUCCESS';
+  const aadhaarBadgeColor = isAadhaarVerified ? '#10b981' : (reportData.aadhaarVerification === 'FAILED' ? '#ef4444' : '#6b7280');
+  const aadhaarBadgeText = isAadhaarVerified ? 'VERIFIED' : (reportData.aadhaarVerification === 'FAILED' ? 'FAILED' : 'NOT STARTED');
+
+  doc.rect(430, listYStart, 115, 18).fill(aadhaarBadgeColor);
+  doc.fontSize(8).fillColor('#ffffff').text(aadhaarBadgeText, 430, listYStart + 5, { width: 115, align: 'center' });
+
+  // PAN Block
+  const panYStart = listYStart + 40;
+  doc.fontSize(10).fillColor(textColor).text('PAN Registry Authentication', 50, panYStart);
+  doc.fontSize(8).fillColor(lightGray).text(`Document Ref: ${reportData.maskedPan}`, 50, panYStart + 11);
+
+  // Status Badge for PAN
+  const isPanVerified = reportData.panVerification === 'SUCCESS';
+  const panBadgeColor = isPanVerified ? '#10b981' : (reportData.panVerification === 'FAILED' ? '#ef4444' : '#6b7280');
+  const panBadgeText = isPanVerified ? 'VERIFIED' : (reportData.panVerification === 'FAILED' ? 'FAILED' : 'NOT STARTED');
+
+  doc.rect(430, panYStart, 115, 18).fill(panBadgeColor);
+  doc.fontSize(8).fillColor('#ffffff').text(panBadgeText, 430, panYStart + 5, { width: 115, align: 'center' });
+
+  // 4. Audit Outcome Summary Box
+  const summaryYStart = panYStart + 45;
+  let summaryBg = '#fdf2f2';
+  let summaryBorder = '#fecaca';
+  let summaryTextTitleColor = '#991b1b';
+  let summaryText = 'The candidate has failed both Aadhaar and PAN verification audits. Background verification clearance is denied.';
+
+  if (reportData.overallStatus === 'VERIFIED') {
+    summaryBg = '#f0fdf4';
+    summaryBorder = '#bbf7d0';
+    summaryTextTitleColor = '#166534';
+    summaryText = 'The candidate has successfully cleared identity audits for Aadhaar and PAN records. Background verification clearance is approved.';
+  } else if (reportData.overallStatus === 'PARTIAL') {
+    summaryBg = '#fffbeb';
+    summaryBorder = '#fde68a';
+    summaryTextTitleColor = '#92400e';
+    summaryText = 'The candidate has achieved partial clearance. One of the verified documents failed authentication. Additional check-ins required.';
+  } else if (reportData.overallStatus === 'PENDING') {
+    summaryBg = '#f0f9ff';
+    summaryBorder = '#bae6fd';
+    summaryTextTitleColor = '#0369a1';
+    summaryText = 'Background verification check is currently in progress. Clearance is pending.';
+  }
+
+  // Draw Summary Box
+  doc.rect(50, summaryYStart, 495, 45).fillAndStroke(summaryBg, summaryBorder);
+  doc.fontSize(9).fillColor(summaryTextTitleColor).text('AUDIT OUTCOME SUMMARY', 62, summaryYStart + 10);
+  doc.fontSize(9).fillColor(textColor).text(summaryText, 62, summaryYStart + 22, { width: 470 });
+
+  // 5. Certification Details
+  const certYStart = summaryYStart + 65;
+  doc.fontSize(11).fillColor(primaryColor).text('CERTIFICATION LOG', 50, certYStart);
+  doc.moveTo(50, certYStart + 15).lineTo(545, certYStart + 15).strokeColor(borderLight).lineWidth(1).stroke();
+
+  // Bottom Columns
+  const bottomY = certYStart + 25;
+  doc.fontSize(8).fillColor(lightGray).text('OVERALL BGV STATUS', col1X, bottomY);
+  doc.fontSize(10).fillColor(textColor).text(reportData.overallStatus, col1X, bottomY + 11);
+
+  doc.fontSize(8).fillColor(lightGray).text('REPORT CERTIFIED BY', col2X, bottomY);
+  doc.fontSize(10).fillColor(textColor).text(reportData.verifiedBy, col2X, bottomY + 11);
+
+  // 6. Footer (Signature and Auth Code)
+  const footerY = 700;
+  doc.moveTo(50, footerY).lineTo(545, footerY).strokeColor(borderLight).lineWidth(1).stroke();
+
+  doc.fontSize(8).fillColor(lightGray).text('DIGITAL FINGERPRINT AUTHORIZATION CODE', 50, footerY + 10);
+  doc.fontSize(8).fillColor('#4b5563').text(reportData.digitalSignature, 50, footerY + 22);
+
+  // Signature line
+  doc.moveTo(380, footerY + 25).lineTo(540, footerY + 25).strokeColor('#9ca3af').lineWidth(1).stroke();
+  doc.fontSize(8).fillColor(lightGray).text(`Certified Signature Mark`, 380, footerY + 30, { width: 160, align: 'center' });
+
+  doc.end();
+};
+
 
 export const getReport = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
@@ -78,6 +223,11 @@ export const getReport = async (req: AuthRequest, res: Response, next: NextFunct
       verifiedBy: req.user?.name || 'Recruiter Admin',
       digitalSignature: `VSHIELD-${candidate.id.slice(0, 8).toUpperCase()}-${Buffer.from(candidate.email).toString('base64').slice(0, 10).toUpperCase()}`,
     };
+
+    // Return PDF if requested
+    if (format === 'pdf') {
+      return generatePDFReport(reportData, res);
+    }
 
     // Return JSON if requested
     if (format === 'json') {
