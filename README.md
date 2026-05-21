@@ -6,6 +6,13 @@ Built with a modern web design philosophy, VShield features a custom-engineered 
 
 ---
 
+## 🔗 Live Deployments
+
+- **Frontend Client (Vercel)**: [https://bg-verifier-vshield.vercel.app](https://bg-verifier-vshield.vercel.app)
+- **Backend Service (Render)**: [https://bg-verifier-vshield.onrender.com](https://bg-verifier-vshield.onrender.com)
+
+---
+
 ## 🚀 Key Features
 
 - **Recruiter Security & Authentication**: Complete JWT-based signup/login workflow with secure password hashing (`bcryptjs`) and automated token refresh persistence.
@@ -67,13 +74,13 @@ Create a `.env` file under the `/backend` directory:
 
 ```env
 # Supabase PgBouncer Pooler String (used for queries)
-DATABASE_URL="postgresql://postgres.[YOUR-PROJECT-REF]:[YOUR-PASSWORD]@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DATABASE_URL="YOUR_SUPABASE_CONNECTION_POOLING_URL"
 
 # Supabase Direct connection String (used for migrations)
-DIRECT_URL="postgresql://postgres.[YOUR-PROJECT-REF]:[YOUR-PASSWORD]@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
+DIRECT_URL="YOUR_SUPABASE_DIRECT_CONNECTION_URL"
 
 # Authentication
-JWT_SECRET="vshield_super_secure_secret_token_key_123!"
+JWT_SECRET="YOUR_JWT_SECRET_KEY"
 
 # Port Mapping (Moved to 5001 to avoid macOS ControlCenter AirPlay conflicts)
 PORT=5001
