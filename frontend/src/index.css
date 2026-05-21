@@ -4,76 +4,75 @@
 @config "../tailwind.config.js";
 
 @theme {
-  --color-slate-950: #070d0b; /* Deep Spruce Black */
-  --color-slate-900: #0c1512; /* Rich dark pine forest background */
-  --color-slate-800: #13221c; /* Premium spruce card background */
-  --color-slate-700: #1c332b; /* Spruce border/outline */
-  --color-slate-600: #2c4a3f;
-  --color-slate-500: #426b5c; /* Subdued text/labels */
-  --color-slate-400: #6c9485; /* Body text contrast */
-  --color-slate-300: #a0c0b3;
-  --color-slate-200: #cfe2da;
-  --color-slate-100: #f0f6f3; /* Pure natural crisp white */
+  --color-slate-950: #ffffff; /* Pure white base for inputs/popups */
+  --color-slate-900: #f6f6f2; /* Soft warm whitish linen background */
+  --color-slate-800: #ffffff; /* Crisp white card background */
+  --color-slate-700: #eaeae2; /* Delicate warm organic linen borders */
+  --color-slate-600: #d7d7c7; /* Stronger borders/outlines */
+  --color-slate-500: #88887a; /* Muted descriptions/labels */
+  --color-slate-400: #5c5c50; /* Highly readable secondary body text */
+  --color-slate-300: #3f3f35; /* Crisp dark sub-headings */
+  --color-slate-200: #22221c; /* Elegant deep-charcoal headings */
+  --color-slate-100: #0c0c09; /* Cleanest deepest charcoal text */
 
-  --color-indigo-950: #041c14;
-  --color-indigo-900: #082e21;
-  --color-indigo-800: #0e4533;
-  --color-indigo-700: #135c44;
-  --color-indigo-650: #187355;
-  --color-indigo-600: #1c8b67;
-  --color-indigo-550: #21a279;
-  --color-indigo-500: #26c695; /* Radiant organic Mint Jade */
-  --color-indigo-450: #4ad2aa;
-  --color-indigo-400: #6eddbe;
-  --color-indigo-300: #9df3d8;
-  --color-indigo-200: #ccfaf0;
-  --color-indigo-100: #f0fffd;
+  --color-indigo-950: #f4fdfa; /* Soft mint background tint */
+  --color-indigo-900: #e6fcf5;
+  --color-indigo-800: #c3fae8;
+  --color-indigo-700: #099268; /* Rich mint for hover states */
+  --color-indigo-650: #0a9b6f;
+  --color-indigo-600: #0ca678; /* Primary actions hover */
+  --color-indigo-550: #0eaf7f;
+  --color-indigo-500: #0ca678; /* Radiant Forest Jade Mint */
+  --color-indigo-450: #0b8a63;
+  --color-indigo-400: #0b8a63; /* Highly contrast-safe rich mint text */
+  --color-indigo-300: #086f4f; /* Deep spruce text */
+  --color-indigo-200: #06563d;
+  --color-indigo-100: #043e2b;
 
-  --color-emerald-950: #271704;
-  --color-emerald-900: #3f2406;
-  --color-emerald-800: #5d3408;
-  --color-emerald-700: #824709;
-  --color-emerald-600: #aa5c0c;
+  --color-emerald-950: #fffbeb; /* Soft amber background tint */
+  --color-emerald-900: #fff9db;
+  --color-emerald-800: #fef08a;
+  --color-emerald-700: #b45309; /* Rich bronze success text */
+  --color-emerald-600: #d97706; /* Primary warm success */
   --color-emerald-500: #d97706; /* Radiant Honey Gold / Amber */
-  --color-emerald-400: #f59e0b;
-  --color-emerald-300: #fbbf24;
-  --color-emerald-200: #fde68a;
-  --color-emerald-100: #fef3c7;
+  --color-emerald-400: #b45309; /* Contrast-safe success text */
+  --color-emerald-300: #92400e;
+  --color-emerald-200: #78350f;
+  --color-emerald-100: #451a03;
 
-  --color-rose-950: #2d0b0b;
-  --color-rose-900: #4c1111;
-  --color-rose-800: #721c1c;
-  --color-rose-700: #992727;
-  --color-rose-600: #c13838;
-  --color-rose-500: #e8503e; /* Vibrant coral clay / warm terracotta */
-  --color-rose-450: #ec6a5b;
-  --color-rose-400: #f08577;
-  --color-rose-300: #f5b2a9;
-  --color-rose-200: #fbd7d2;
-  --color-rose-100: #fff0ee;
+  --color-rose-950: #fff5f5; /* Soft rose background tint */
+  --color-rose-900: #ffe3e3;
+  --color-rose-800: #ffc9c9;
+  --color-rose-700: #c92a2a; /* Rich crimson warning text */
+  --color-rose-600: #e64949; /* Primary warm warning */
+  --color-rose-500: #e64949; /* Radiant Terracotta Red */
+  --color-rose-400: #c92a2a; /* Contrast-safe alert text */
+  --color-rose-300: #a81e1e;
+  --color-rose-200: #8c1616;
+  --color-rose-100: #5c0c0c;
 }
 
 @layer base {
   body {
     @apply bg-slate-900 text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-indigo-500 selection:text-white;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(38, 198, 149, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.05) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(12, 166, 120, 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.03) 0px, transparent 50%);
     min-height: 100vh;
   }
 }
 
 /* Glassmorphism helpers */
 .glass-panel {
-  @apply bg-slate-800/60 backdrop-blur-md border border-slate-700/50 shadow-xl shadow-slate-950/20;
+  @apply bg-slate-800/85 backdrop-blur-md border border-slate-700/70 shadow-lg shadow-slate-300/20;
 }
 
 .glass-card {
-  @apply bg-slate-800/40 hover:bg-slate-800/60 backdrop-blur-sm border border-slate-700/30 transition-all duration-300 shadow-md;
+  @apply bg-slate-800/95 hover:bg-slate-800 backdrop-blur-sm border border-slate-700/60 transition-all duration-300 shadow-md shadow-slate-300/10 hover:shadow-lg hover:shadow-slate-300/20;
 }
 
 .glass-input {
-  @apply bg-slate-950/40 border border-slate-700/60 focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/50 text-slate-100 placeholder-slate-500 rounded-lg px-4 py-2.5 transition-all duration-200 outline-none;
+  @apply bg-slate-950 border border-slate-700 focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/30 text-slate-100 placeholder-slate-500 rounded-lg px-4 py-2.5 transition-all duration-200 outline-none;
 }
 
 /* Premium Scrollbars */

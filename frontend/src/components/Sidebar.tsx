@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout, isOpen, onClose }) =>
               <Shield className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="font-bold text-lg leading-tight tracking-tight text-white">VShield</h1>
+              <h1 className="font-bold text-lg leading-tight tracking-tight text-slate-100">VShield</h1>
               <span className="text-[10px] text-emerald-400 font-semibold tracking-widest uppercase">Verifier</span>
             </div>
           </div>
@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout, isOpen, onClose }) =>
           {/* Close Menu Button on Mobile */}
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors lg:hidden"
+            className="p-1.5 rounded-lg hover:bg-slate-900 text-slate-400 hover:text-slate-100 transition-colors lg:hidden"
           >
             <X className="w-5.5 h-5.5" />
           </button>
@@ -50,13 +50,13 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout, isOpen, onClose }) =>
         {/* Navigation Items */}
         <nav className="flex flex-col gap-1.5">
           <NavLink
-            to="/"
+            to="/dashboard"
             onClick={onClose}
             className={({ isActive }) =>
               `flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                 isActive
                   ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md shadow-indigo-950/40 border-l-4 border-indigo-400'
-                  : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-100'
+                  : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'
               }`
             }
           >
@@ -71,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout, isOpen, onClose }) =>
               `flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                 isActive
                   ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md shadow-indigo-950/40 border-l-4 border-indigo-400'
-                  : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-100'
+                  : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'
               }`
             }
           >
