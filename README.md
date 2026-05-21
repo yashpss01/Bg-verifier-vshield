@@ -13,6 +13,7 @@ Built with a modern web design philosophy, VShield features a custom-engineered 
 - **Real-Time Verification Engine**: Multi-step orchestrator verifying credentials against simulated Aadhaar and PAN registries.
 - **Audit Logs & Raw Inspector**: Transparent audit history showcasing masked request payloads and raw JSON response metrics from identity registries.
 - **Printable Verification Sheets**: A beautifully formatted digital credentials document ready for instant printing or local PDF exporting.
+- **Direct Server-Side PDF Downloads**: Integrated dynamic PDF compilation with `pdfkit` on the backend, allowing recruiters to download beautifully styled reports instantly as a binary stream.
 - **Supabase Integration**: Migrated and configured with connection pooling (`PgBouncer`) and direct database migration endpoints.
 
 ---
@@ -31,6 +32,7 @@ Built with a modern web design philosophy, VShield features a custom-engineered 
   - `bcryptjs`: Industry-grade password encryption
   - `jsonwebtoken`: Secure stateless JWT authentication
   - `zod`: Request body type validation validation schema
+  - `pdfkit`: Dynamic PDF compiler for server-side report drawing
 
 ### Frontend Client (`frontend/`)
 - **Framework**: React.js (`v19`) + Vite
@@ -65,16 +67,16 @@ Create a `.env` file under the `/backend` directory:
 
 ```env
 # Supabase PgBouncer Pooler String (used for queries)
-DATABASE_URL="postgresql://postgres.rmslieajmzmixzyiqsmi:bg-verifier-vshield@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DATABASE_URL="postgresql://postgres.[YOUR-PROJECT-REF]:[YOUR-PASSWORD]@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
 
 # Supabase Direct connection String (used for migrations)
-DIRECT_URL="postgresql://postgres.rmslieajmzmixzyiqsmi:bg-verifier-vshield@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
+DIRECT_URL="postgresql://postgres.[YOUR-PROJECT-REF]:[YOUR-PASSWORD]@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
 
 # Authentication
 JWT_SECRET="vshield_super_secure_secret_token_key_123!"
 
-# Port Mapping
-PORT=5000
+# Port Mapping (Moved to 5001 to avoid macOS ControlCenter AirPlay conflicts)
+PORT=5001
 ```
 
 ---
@@ -162,7 +164,7 @@ npm run build
 npm run dev
 ```
 
-The VShield Server will spin up at `http://localhost:5000` with active connections to your Supabase PostgreSQL cluster.
+The VShield Server will spin up at `http://localhost:5001` with active connections to your Supabase PostgreSQL cluster.
 
 ### 3. Configure Frontend Client
 Navigate to `/frontend`:
@@ -201,3 +203,4 @@ The VShield Client will render locally at `http://localhost:5173`. Open your bro
 
 ### 📄 Digital Reports Sheet
 - `GET /api/reports/:id` - Serves custom structured report details and outputs a beautiful, clean printable document sheet.
+  - Query Parameters: `?format=json` (returns structured JSON payload), `?format=pdf` (downloads professional styled PDF binary), or default (serves printable HTML sheet).
