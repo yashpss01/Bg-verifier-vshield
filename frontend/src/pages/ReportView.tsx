@@ -117,7 +117,7 @@ const ReportView: React.FC = () => {
         {/* Audit Status Outcome Display */}
         <div className={`p-6 rounded-xl border flex items-start gap-4 ${
           isVerified ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' :
-          isPartial ? 'bg-amber-500/10 border-amber-500/20 text-amber-300' :
+          isPartial ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' :
           'bg-rose-500/10 border-rose-500/20 text-rose-400'
         }`}>
           <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-md ${
@@ -178,7 +178,7 @@ const ReportView: React.FC = () => {
               <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Aadhaar Verification ({report.maskedAadhaar})</span>
               <div className="flex items-center gap-2 mt-1">
                 <span className={`w-2.5 h-2.5 rounded-full ${report.aadhaarVerification === 'SUCCESS' ? 'bg-emerald-400 shadow-lg shadow-emerald-500/20' : 'bg-rose-500'}`}></span>
-                <span className="text-sm font-extrabold text-slate-200">{report.aadhaarVerification === 'SUCCESS' ? 'AUTHENTICATED' : 'FAILED'}</span>
+                <span className={`text-sm font-extrabold ${report.aadhaarVerification === 'SUCCESS' ? 'text-emerald-400' : 'text-rose-400'}`}>{report.aadhaarVerification === 'SUCCESS' ? 'AUTHENTICATED' : 'FAILED'}</span>
               </div>
             </div>
 
@@ -186,7 +186,7 @@ const ReportView: React.FC = () => {
               <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">PAN Card Verification ({report.maskedPan})</span>
               <div className="flex items-center gap-2 mt-1">
                 <span className={`w-2.5 h-2.5 rounded-full ${report.panVerification === 'SUCCESS' ? 'bg-emerald-400 shadow-lg shadow-emerald-500/20' : 'bg-rose-500'}`}></span>
-                <span className="text-sm font-extrabold text-slate-200">{report.panVerification === 'SUCCESS' ? 'AUTHENTICATED' : 'FAILED'}</span>
+                <span className={`text-sm font-extrabold ${report.panVerification === 'SUCCESS' ? 'text-emerald-400' : 'text-rose-400'}`}>{report.panVerification === 'SUCCESS' ? 'AUTHENTICATED' : 'FAILED'}</span>
               </div>
             </div>
           </div>

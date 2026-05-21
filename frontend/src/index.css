@@ -29,16 +29,16 @@
   --color-indigo-200: #121e54;
   --color-indigo-100: #090f2b;
 
-  --color-emerald-950: #f0fdf4; /* Ultra-soft sage green background tint */
-  --color-emerald-900: #dcfce7;
-  --color-emerald-800: #bbf7d0;
-  --color-emerald-700: #15803d; /* Rich forest green success text */
-  --color-emerald-600: #16a34a; /* Primary emerald success */
+  --color-emerald-950: #ecfdf5; /* Radiant mint-green background tint */
+  --color-emerald-900: #d1fae5;
+  --color-emerald-800: #a7f3d0;
+  --color-emerald-700: #047857;
+  --color-emerald-600: #059669; /* Primary emerald success */
   --color-emerald-500: #10b981; /* Radiant Emerald success bullet */
-  --color-emerald-400: #047857; /* Highly contrast-safe deep mint green text for white backdrops */
-  --color-emerald-300: #065f46;
-  --color-emerald-200: #064e3b;
-  --color-emerald-100: #022c22;
+  --color-emerald-400: #059669; /* High-contrast vivid success green text */
+  --color-emerald-300: #047857;
+  --color-emerald-200: #065f46;
+  --color-emerald-100: #064e3b;
 
   --color-rose-950: #fff5f5; /* Soft rose background tint */
   --color-rose-900: #ffe3e3;
@@ -50,6 +50,28 @@
   --color-rose-300: #a81e1e;
   --color-rose-200: #8c1616;
   --color-rose-100: #5c0c0c;
+
+  --color-red-950: #fff5f5;
+  --color-red-900: #ffe3e3;
+  --color-red-800: #ffc9c9;
+  --color-red-700: #c92a2a;
+  --color-red-600: #e64949;
+  --color-red-500: #e64949;
+  --color-red-400: #c92a2a;
+  --color-red-300: #a81e1e;
+  --color-red-200: #8c1616;
+  --color-red-100: #5c0c0c;
+
+  --color-amber-950: #fffbeb; /* Soft yellowish cream background tint */
+  --color-amber-900: #fef3c7;
+  --color-amber-800: #fde68a;
+  --color-amber-700: #b45309; /* Deep gold yellow text */
+  --color-amber-600: #d97706;
+  --color-amber-500: #eab308; /* Radiant gold yellow */
+  --color-amber-400: #ca8a04; /* Highly contrast-safe vivid golden-yellow text */
+  --color-amber-300: #854d0e;
+  --color-amber-200: #713f12;
+  --color-amber-100: #451a03;
 }
 
 @layer base {

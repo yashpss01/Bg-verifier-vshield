@@ -173,7 +173,7 @@ const CandidateDetails: React.FC = () => {
           <button
             onClick={() => navigate(`/reports/${candidate.id}`)}
             disabled={candidate.status === 'PENDING'}
-            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-100 hover:text-slate-200 font-semibold text-xs px-4.5 py-3 rounded-xl transition-all duration-200 shadow-md disabled:opacity-30 disabled:pointer-events-none active:scale-[0.98]"
+            className="flex items-center gap-2 bg-indigo-900 hover:bg-indigo-800 text-indigo-400 border border-indigo-700/30 hover:border-indigo-600/40 font-semibold text-xs px-4.5 py-3 rounded-xl transition-all duration-200 shadow-md disabled:opacity-30 disabled:pointer-events-none active:scale-[0.98]"
           >
             <FileSpreadsheet className="w-4 h-4" />
             Generate Report

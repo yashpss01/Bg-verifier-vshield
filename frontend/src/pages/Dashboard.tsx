@@ -243,7 +243,7 @@ const Dashboard: React.FC = () => {
               </div>
             ) : (
               <>
-                {/* Custom Responsive SVG Chart */}
+                 {/* Custom Responsive SVG Chart */}
                 <div className="relative w-40 h-40 flex items-center justify-center">
                   <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                     {/* Background Circle */}
@@ -258,16 +258,23 @@ const Dashboard: React.FC = () => {
                     
                     {/* Pending Ring */}
                     <circle 
-                      cx="18" cy="18" r="15.915" fill="none" stroke="#6366f1" strokeWidth="3" 
+                      cx="18" cy="18" r="15.915" fill="none" stroke="#3b56cd" strokeWidth="3" 
                       strokeDasharray={`${(stats.pending / stats.total) * 100} ${100 - (stats.pending / stats.total) * 100}`}
                       strokeDashoffset={`${-((stats.verified / stats.total) * 100)}`}
                     />
  
+                    {/* Partial Ring */}
+                    <circle 
+                      cx="18" cy="18" r="15.915" fill="none" stroke="#eab308" strokeWidth="3" 
+                      strokeDasharray={`${(stats.partial / stats.total) * 100} ${100 - (stats.partial / stats.total) * 100}`}
+                      strokeDashoffset={`${-(((stats.verified + stats.pending) / stats.total) * 100)}`}
+                    />
+
                     {/* Failed Ring */}
                     <circle 
-                      cx="18" cy="18" r="15.915" fill="none" stroke="#ef4444" strokeWidth="3" 
-                      strokeDasharray={`${((stats.failed + stats.partial) / stats.total) * 100} ${100 - ((stats.failed + stats.partial) / stats.total) * 100}`}
-                      strokeDashoffset={`${-(((stats.verified + stats.pending) / stats.total) * 100)}`}
+                      cx="18" cy="18" r="15.915" fill="none" stroke="#e64949" strokeWidth="3" 
+                      strokeDasharray={`${(stats.failed / stats.total) * 100} ${100 - (stats.failed / stats.total) * 100}`}
+                      strokeDashoffset={`${-(((stats.verified + stats.pending + stats.partial) / stats.total) * 100)}`}
                     />
                   </svg>
                   <div className="absolute flex flex-col items-center">
@@ -298,10 +305,18 @@ const Dashboard: React.FC = () => {
 
                   <div className="flex items-center justify-between text-xs font-semibold">
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
-                      <span className="text-slate-400">Failed / Partial</span>
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
+                      <span className="text-slate-400">Partial</span>
                     </div>
-                    <span className="text-slate-200">{stats.failed + stats.partial} ({stats.total > 0 ? Math.round(((stats.failed + stats.partial) / stats.total) * 100) : 0}%)</span>
+                    <span className="text-slate-200">{stats.partial} ({stats.total > 0 ? Math.round((stats.partial / stats.total) * 100) : 0}%)</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
+                      <span className="text-slate-400">Failed</span>
+                    </div>
+                    <span className="text-slate-200">{stats.failed} ({stats.total > 0 ? Math.round((stats.failed / stats.total) * 100) : 0}%)</span>
                   </div>
                 </div>
               </>

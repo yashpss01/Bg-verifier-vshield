@@ -98,19 +98,19 @@ const generatePDFReport = (reportData: any, res: Response) => {
   let summaryText = 'The candidate has failed both Aadhaar and PAN verification audits. Background verification clearance is denied.';
 
   if (reportData.overallStatus === 'VERIFIED') {
-    summaryBg = '#f0fdf4';
-    summaryBorder = '#bbf7d0';
-    summaryTextTitleColor = '#166534';
+    summaryBg = '#ecfdf5';
+    summaryBorder = '#a7f3d0';
+    summaryTextTitleColor = '#047857';
     summaryText = 'The candidate has successfully cleared identity audits for Aadhaar and PAN records. Background verification clearance is approved.';
   } else if (reportData.overallStatus === 'PARTIAL') {
     summaryBg = '#fffbeb';
     summaryBorder = '#fde68a';
-    summaryTextTitleColor = '#92400e';
+    summaryTextTitleColor = '#a16207';
     summaryText = 'The candidate has achieved partial clearance. One of the verified documents failed authentication. Additional check-ins required.';
   } else if (reportData.overallStatus === 'PENDING') {
-    summaryBg = '#f0f9ff';
-    summaryBorder = '#bae6fd';
-    summaryTextTitleColor = '#0369a1';
+    summaryBg = '#e8f0fe';
+    summaryBorder = '#ccd7f7';
+    summaryTextTitleColor = '#253995';
     summaryText = 'Background verification check is currently in progress. Clearance is pending.';
   }
 
@@ -323,12 +323,12 @@ export const getReport = async (req: AuthRequest, res: Response, next: NextFunct
             text-transform: uppercase;
             letter-spacing: 0.5px;
           }
-          .status-VERIFIED { background-color: #d1fae5; color: #065f46; }
-          .status-FAILED { background-color: #fee2e2; color: #991b1b; }
-          .status-PARTIAL { background-color: #fef3c7; color: #92400e; }
-          .status-PENDING { background-color: #e0f2fe; color: #075985; }
+          .status-VERIFIED { background-color: #ecfdf5; color: #059669; }
+          .status-FAILED { background-color: #fee2e2; color: #e64949; }
+          .status-PARTIAL { background-color: #fffbeb; color: #ca8a04; }
+          .status-PENDING { background-color: #e8f0fe; color: #1a73e8; }
           
-          .status-SUCCESS { background-color: #d1fae5; color: #065f46; }
+          .status-SUCCESS { background-color: #ecfdf5; color: #059669; }
           .status-NOT_STARTED { background-color: #f3f4f6; color: #374151; }
 
           .signature-box {
@@ -444,19 +444,19 @@ export const getReport = async (req: AuthRequest, res: Response, next: NextFunct
             </div>
           </div>
 
-          <div class="field" style="margin-top: 20px; background: #fdf2f2; padding: 15px; border-radius: 8px; border: 1px solid #fecaca; display: ${reportData.overallStatus === 'FAILED' ? 'block' : 'none'}">
-            <div class="label" style="color: #991b1b;">Audit Outcome Summary</div>
-            <div class="value" style="color: #7f1d1d; font-weight: 600;">The candidate has failed both Aadhaar and PAN verification audits. Background verification clearance is denied.</div>
+          <div class="field" style="margin-top: 20px; background: #fee2e2; padding: 15px; border-radius: 8px; border: 1px solid #ffc9c9; display: ${reportData.overallStatus === 'FAILED' ? 'block' : 'none'}">
+            <div class="label" style="color: #e64949;">Audit Outcome Summary</div>
+            <div class="value" style="color: #c92a2a; font-weight: 600;">The candidate has failed both Aadhaar and PAN verification audits. Background verification clearance is denied.</div>
           </div>
 
           <div class="field" style="margin-top: 20px; background: #fffbeb; padding: 15px; border-radius: 8px; border: 1px solid #fde68a; display: ${reportData.overallStatus === 'PARTIAL' ? 'block' : 'none'}">
-            <div class="label" style="color: #92400e;">Audit Outcome Summary</div>
-            <div class="value" style="color: #78350f; font-weight: 600;">The candidate has achieved partial clearance. One of the verified documents failed authentication. Additional check-ins required.</div>
+            <div class="label" style="color: #ca8a04;">Audit Outcome Summary</div>
+            <div class="value" style="color: #a16207; font-weight: 600;">The candidate has achieved partial clearance. One of the verified documents failed authentication. Additional check-ins required.</div>
           </div>
 
-          <div class="field" style="margin-top: 20px; background: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px solid #bbf7d0; display: ${reportData.overallStatus === 'VERIFIED' ? 'block' : 'none'}">
-            <div class="label" style="color: #166534;">Audit Outcome Summary</div>
-            <div class="value" style="color: #14532d; font-weight: 600;">The candidate has successfully cleared identity audits for Aadhaar and PAN records. Background verification clearance is approved.</div>
+          <div class="field" style="margin-top: 20px; background: #ecfdf5; padding: 15px; border-radius: 8px; border: 1px solid #a7f3d0; display: ${reportData.overallStatus === 'VERIFIED' ? 'block' : 'none'}">
+            <div class="label" style="color: #059669;">Audit Outcome Summary</div>
+            <div class="value" style="color: #047857; font-weight: 600;">The candidate has successfully cleared identity audits for Aadhaar and PAN records. Background verification clearance is approved.</div>
           </div>
 
           <div class="section-title">Certification Log</div>
