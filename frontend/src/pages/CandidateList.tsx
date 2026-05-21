@@ -196,7 +196,7 @@ const CandidateList: React.FC = () => {
             <input
               type="text"
               placeholder="Search by name, email, phone..."
-              className="w-full glass-input pl-10 text-xs py-2"
+              className="block w-full h-9 glass-input pl-10 text-xs"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />

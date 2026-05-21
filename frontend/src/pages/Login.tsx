@@ -135,7 +135,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   id="email"
                   type="email"
                   placeholder="admin@vshield.com"
-                  className="w-full glass-input pl-11 text-sm"
+                  className="block w-full h-11 glass-input pl-11 text-sm"
                   {...loginRegister('email')}
                 />
               </div>
@@ -154,7 +154,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   id="password"
                   type="password"
                   placeholder="••••••••"
-                  className="w-full glass-input pl-11 text-sm"
+                  className="block w-full h-11 glass-input pl-11 text-sm"
                   {...loginRegister('password')}
                 />
               </div>
@@ -202,7 +202,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   id="name"
                   type="text"
                   placeholder="Admin Recruiter"
-                  className="w-full glass-input pl-11 text-sm"
+                  className="block w-full h-11 glass-input pl-11 text-sm"
                   {...registerRegister('name')}
                 />
               </div>
@@ -221,7 +221,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   id="reg-email"
                   type="email"
                   placeholder="recruiter@vshield.com"
-                  className="w-full glass-input pl-11 text-sm"
+                  className="block w-full h-11 glass-input pl-11 text-sm"
                   {...registerRegister('email')}
                 />
               </div>
@@ -240,7 +240,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   id="reg-password"
                   type="password"
                   placeholder="••••••••"
-                  className="w-full glass-input pl-11 text-sm"
+                  className="block w-full h-11 glass-input pl-11 text-sm"
                   {...registerRegister('password')}
                 />
               </div>
