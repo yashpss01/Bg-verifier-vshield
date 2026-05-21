@@ -49,7 +49,7 @@ To review the live dashboard without registering a new account, you can use thes
 ### Frontend Client (`frontend/`)
 - **Framework**: React.js (`v19`) + Vite
 - **Language**: TypeScript (strict compile configurations)
-- **Styling Layout**: Vanilla Tailwind CSS v4 with curated design systems (Google Fonts: Outfit/Inter typography, animated micro-transitions, dark glassmorphism glass panels, and interactive timelines)
+- **Styling Layout**: Vanilla Tailwind CSS v4 with curated design systems (Google Fonts: Outfit/Inter typography, animated micro-transitions, premium light organic linen glassmorphism panels, and interactive timelines)
 - **State & Forms**:
   - `react-router-dom`: SPA routing guards and redirection structures
   - `react-hook-form`: Optimized forms with state trackers
